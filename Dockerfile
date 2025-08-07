@@ -4,10 +4,12 @@ WORKDIR /app
 
 COPY . .
 
-EXPOSE 22006
+EXPOSE 3000
 
-RUN apk update && apk add --no-cache openssl curl &&\
-    chmod +x index.js &&\
+# 安装 curl，并执行原有命令
+RUN apt update -y && \
+    apt install -y curl && \
+    chmod +x index.js && \
     npm install
 
 CMD ["node", "index.js"]
